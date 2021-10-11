@@ -18,17 +18,36 @@
 
     let parent = document.getElementById("container");
     async function movie(){
-        let movie = document.getElementById("movie_name").value;
-        let res = await fetch(`http://www.omdbapi.com/?t=${movie}&apikey=c597e021`);
-        let data = await res.json();
-        showMovie(data);
+        
+            let movie = document.getElementById("movie_name").value;
+            let res = await fetch(`http://www.omdbapi.com/?t=${movie}&apikey=c597e021`);
+            let data = await res.json();
+            if(data.Error){
+                showError();
+            }else {
+                console.log(data);
+                showMovie(data);
+            }
+            
+       
+       
+        
     }
     function showMovie(moviename){
         let title = document.createElement("h3");
         title.innerText = moviename.Title;
-        container.append(title);
+        let img = document.createElement('img');
+        img.src = moviename.Poster;
+        
+        container.append(title, img);
     }
     
-
+    function showError(){
+        let error_name = document.createElement('h3');
+        error_name.innerText = "Movie not found!";
+        let img = document.createElement('img');
+        img.src = "https://c.tenor.com/eQqGqszdbvIAAAAC/nothereyet-nothere.gif";
+        container.append(error_name,img)
+    }
 </script>
 </html>
