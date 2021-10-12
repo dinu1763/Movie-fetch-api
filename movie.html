@@ -10,6 +10,9 @@
     Movie
     <input type="text" id="movie_name" placeholder="Enter any Movie Name">
     <button onclick="movie()">Search Movie</button>
+    <div id="recomended">
+        Recomended Movies
+    </div>
     <div id="container">
 
     </div>
@@ -17,6 +20,7 @@
 <script>
 
     let parent = document.getElementById("container");
+    let reco = document.getElementById("recomended");
     async function movie(){
         
             let movie = document.getElementById("movie_name").value;
@@ -26,6 +30,9 @@
                 showError();
             }else {
                 console.log(data);
+                if(data.imdbRating > 8){
+                    recomended(data);
+                }
                 showMovie(data);
             }
             
@@ -39,7 +46,7 @@
         let img = document.createElement('img');
         img.src = moviename.Poster;
         
-        container.append(title, img);
+        parent.append(title, img);
     }
     
     function showError(){
@@ -47,7 +54,16 @@
         error_name.innerText = "Movie not found!";
         let img = document.createElement('img');
         img.src = "https://c.tenor.com/eQqGqszdbvIAAAAC/nothereyet-nothere.gif";
-        container.append(error_name,img)
+        parent.append(error_name,img)
+    }
+
+    function recomended(moviename){
+        let title = document.createElement("h3");
+        title.innerText = moviename.Title;
+        let img = document.createElement('img');
+        img.src = moviename.Poster;
+        
+        reco.append(title, img);
     }
 </script>
 </html>
