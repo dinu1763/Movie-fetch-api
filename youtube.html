@@ -168,6 +168,13 @@
        color: #fff;
        background: #242424;
    }
+   #video-container{
+    margin-left: 93px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    /* width: 85px; */
+    margin-top: 120px;
+   }
 </style>
 <body>
     <!-- NAVBAR -->
@@ -179,8 +186,8 @@
         </div>
         <img src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" class="logo" alt="">
         <div class="search-box">
-            <input type="text" class="search-bar" placeholder="search">
-            <button class="search-btn"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-512.png" width="25" 
+            <input type="text" id="query" class="search-bar" placeholder="search">
+            <button onclick="searchVideos()" class="search-btn"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-512.png" width="25" 
                 height="25" alt=""></button>
         </div>
         <div class="user-options">
@@ -212,5 +219,35 @@
         <button class="filter-options">marvel</button>
        
     </div>
+    <!-- VIDEOS -->
+    <div id="video-container">
+
+    </div>
 </body>
 </html>
+<script>
+    let videos = document.getElementById("video-container");
+   //AIzaSyCZLmqgBo0c72LufIrCB5ea1U4IZk8i5s0
+   //https://youtube.googleapis.com/youtube/v3/search?q=csk&type=video&key=[YOUR_API_KEY]
+   //https://youtube.googleapis.com/youtube/v3/search?q=csk&type=video&key=[YOUR_API_KEY]
+
+async function searchVideos(){
+    let query = document.getElementById("query").value;
+    let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${query}&regionCode=IN&type=video&key=AIzaSyDQyI_1DTzLtD_LbhEbcmtsiNutmTGTKx0&maxResults=50&chart=mostPopular`);
+    let data = await res.json();
+    console.log(data);
+
+    appendVideos(data.items)
+}
+function appendVideos(video_data){
+    videos.innerHTML = null
+    video_data.forEach(({id: {videoId}})=>{
+        let div = document.createElement("div");
+        div.innerHTML = `<iframe width="260" height="215" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+        div.style.marginTop = "20px";
+        videos.append(div);
+    });
+}
+searchVideos()
+</script>
