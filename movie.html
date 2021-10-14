@@ -18,6 +18,15 @@
         overflow: scroll;
         border-top: none;
     }
+    #movies > img {
+        width: 45px;
+        height: 45px;
+       
+    }
+    #movies > p {
+        border: 1px solid black;
+       
+    }
 </style>
 <body>
     Movie
@@ -26,10 +35,14 @@
     <div id="movies">
 
     </div>
+    <h1 id="selectedMovies">
+
+    </h1>
 </body>
 <script>
     var timerId;
   //search Movies
+  let selected_movie = document.getElementById("selectedMovies");
   let movies_div = document.getElementById("movies");
   async function searchMovies(movie_name){
     try{
@@ -52,10 +65,25 @@
       movies_div.innerHTML = null;
       movies.forEach(function (movie){
           let p = document.createElement('p');
+          let img = document.createElement("img");
+          img.src = movie.Poster;
+          
           p.innerText = movie.Title;
-          movies_div.append(p);
+          movies_div.append(p, img);
+          
+      
       });
+     
   }
+
+
+  function selected(movie){
+          var select = movie.path[0].innerText;
+          var select1 = movie
+          console.log(select1);
+          selected_movie.append(select) 
+      }
+      document.addEventListener("click", selected)
 
   async function main(){
       let name = document.getElementById("movie").value;

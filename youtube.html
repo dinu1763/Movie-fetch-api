@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    *:focus{
+        outline: none;
+    }
+    body{
+        position: relative;
+        background: #f0f0f0;
+        font-family: 'roboto', sans-serif;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 2.5vm;
+    }
+    .toggle-btn {
+        width: 20px;
+        height: 10px;
+        position: relative;
+        cursor: pointer;
+        margin-left: 15px;
+    }
+    .toggle-btn span{
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #979797;
+        cursor: pointer;
+    }
+    .toggle-btn span:nth-child(1){
+        top: 0;
+        cursor: pointer;
+    }
+    .toggle-btn span:nth-child(3){
+        top: 100%;
+        cursor: pointer;
+    }
+    .logo{
+        height: 50px;
+        margin: -5px 30px 0;
+        cursor: pointer;
+    }
+    .search-box{
+        position: relative;
+        max-width: 500px;
+        width: 73%;
+        height: 35px;
+        display: flex;
+
+    }
+    .search-bar{
+      width: 85%;
+      height: 100%;
+      border: 2px solid #dbdbdb;
+      padding: 0 20px;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+    .search-btn{
+        width: 15%;
+        height: 100%;
+        background: #f0f0f0;
+        border: 2px solid #dbdbdb;
+        padding: 5px 0;
+        border-left: none;
+        cursor: pointer;
+    }
+   .user-options{
+       display: flex;
+       margin-left: auto;
+       align-items: center;
+   }
+   .user-options .icon{
+       height: 80%;
+       margin-right: 20px;
+       cursor: pointer;
+   }
+   /* side-bar styles */
+   .side-bar{
+       position: fixed;
+       top: 60px;
+       left: 0;
+       min-width: 85px;
+       width: 85px;
+       height: calc(100vh - 60px);
+       background: #fff;
+       padding-right: 10px;
+   }
+   .links{
+       display: block;
+       width: 10%;
+       padding: 15px;
+       text-align: left;
+       align-items:center;
+       margin: 0 10px;
+       text-transform: capitalize;
+       color: #242424;
+       font-size: 14px;
+       font-weight: 500;
+       text-decoration: none;
+   }
+   .links:nth-child(3){
+      
+       width: 100%;
+       padding: 1px;
+        margin-left: 14px;
+        text-align: center;
+        margin: 0 0px;
+       align-items:center;
+       text-transform: capitalize;
+       color: #242424;
+       font-size: 14px;
+       font-weight: 500;
+       text-decoration: none;
+   }
+   /* .links:hover,
+   .links.active{
+       background: rgba(0, 0, 0, 0.1);
+   } */
+   .filters{
+       position: fixed;
+       left:85px;
+       top: 60px;
+       width: 100%;
+       height: 60px;
+       background: #fff;
+       border-top: 1px solid #dbdbdb;
+       border-bottom: 1px solid #dbdbdb;
+       padding: 0 20px;
+       display: flex;
+       align-items: center;
+
+
+   }
+   .filter-options{
+       flex: 0 0 auto;
+       padding: 5px 15px;
+       border-radius: 16px;
+       background: #f0f0f0;
+       border: 1px solid #dbdbdb;
+       text-transform: capitalize;
+       margin-right: 10px;
+       color: #242424;
+       font-size: 14px;
+       cursor: pointer;
+   }
+   .filter-options.active{
+       color: #fff;
+       background: #242424;
+   }
+</style>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <img src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" class="logo" alt="">
+        <div class="search-box">
+            <input type="text" class="search-bar" placeholder="search">
+            <button class="search-btn"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-512.png" width="25" 
+                height="25" alt=""></button>
+        </div>
+        <div class="user-options">
+            
+            <img src="https://icon-library.com/images/grid-icon/grid-icon-17.jpg" class="icon" width=30 height=30 alt="">
+            <img src="https://cdn.pixabay.com/photo/2020/10/31/06/28/youtube-bell-icon-5700370_1280.png" class="icon" width=30 height=30 alt="">
+            <img src="https://i.pinimg.com/736x/b8/69/5f/b8695f007aea9a08a0419479217ca6aa.jpg" class="icon" width=35 height=35 alt="">
+        </div>
+    </nav>
+    <!-- SIDE BAR -->
+    <div class="side-bar">
+        <a href="#" class="links"><img src="img/home.jpg" width="30px" height="30px" alt="">Home</a>
+        <a href="#" class="links"><img src="img/explore.jpg" width="30px" height="30px" alt="">Explore</a>
+        <a href="#" class="links"><img src="img/subscribe.jpg" width="30px" height="30px" alt="">Subscription</a>
+        <a href="#" class="links"><img src="img/noti.jpg" width="30px" height="30px" alt="">Library</a>
+    </div>
+    <!-- FILTERS -->
+    <div class="filters">
+        <button class="filter-options active" >All</button>
+        <button class="filter-options">javascript</button>
+        <button class="filter-options">CSS</button>
+        <button class="filter-options">HTML</button>
+        <button class="filter-options">Python</button>
+        <button class="filter-options">Entertainment</button>
+        <button class="filter-options">songs</button>
+        <button class="filter-options">marvel</button>
+        <button class="filter-options">cat</button>
+        <button class="filter-options">songs</button>
+        <button class="filter-options">marvel</button>
+       
+    </div>
+</body>
+</html>
